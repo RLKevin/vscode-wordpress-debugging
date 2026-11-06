@@ -1,0 +1,67 @@
+{
+  "name": "wordpress-debugging",
+  "displayName": "WordPress Debugging",
+  "description": "Open wp-config.php and wp-content/debug.log from a WordPress theme workspace.",
+  "version": "0.1.0",
+  "publisher": "teamswitch",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onView:wordpressDebugging.files"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "wordpressDebugging",
+          "title": "WordPress Debugging",
+          "icon": "media/wordpress-debugging.svg"
+        }
+      ]
+    },
+    "views": {
+      "wordpressDebugging": [
+        {
+          "id": "wordpressDebugging.files",
+          "name": "Debug Files"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "wordpressDebugging.refresh",
+        "title": "WordPress Debugging: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "wordpressDebugging.openFile",
+        "title": "WordPress Debugging: Open Debug File"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "wordpressDebugging.refresh",
+          "when": "view == wordpressDebugging.files",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "wordpressDebugging.openFile",
+          "when": "false"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "check": "node --check src/extension.js && node --check src/wordpress.js",
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
